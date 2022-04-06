@@ -22,11 +22,11 @@ class Level:
 	def create_map(self):
 		layouts = {
 			'boundary': import_csv_layout('./map/map_FloorBlocks.csv'),
-			# 'grass': import_csv_layout('../map/map_Grass.csv'),
+			'grass': import_csv_layout('./map/map_Grass.csv'),
 			'object': import_csv_layout('./map/map_Objects.csv'),
 		}
 		graphics = {
-			# 'grass': import_folder('../graphics/Grass'),
+			'grass': import_folder('./graphics/Grass'),
 			'objects': import_folder('./graphics/objects')
 		}
 
@@ -38,10 +38,9 @@ class Level:
 						y = row_index * TILESIZE
 						if style == 'boundary':
 							Tile((x,y),[self.obstacle_sprites],'invisible')
-						# if style == 'grass':
-						# 	random_grass_image = choice(graphics['grass'])
-						# 	Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'grass',random_grass_image)
-
+						if style == 'grass':
+							random_grass_image = choice(graphics['grass'])
+							Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'grass',random_grass_image)
 						if style == 'object':
 							surf = graphics['objects'][int(col)]
 							Tile((x,y),[self.visible_sprites,self.obstacle_sprites],'object',surf)
